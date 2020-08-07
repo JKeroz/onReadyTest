@@ -1,0 +1,12 @@
+{
+  "name": "nodetest",
+  "version": "1.0.0",
+  "description": "Node Test exercise",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
