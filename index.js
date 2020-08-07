@@ -24,21 +24,25 @@ class Auto extends Vehiculo {
     }
 }
 
+//Instanciar vehiculos
 const vehiculo1 = new Auto("Peugeot", "206", 200000, 4);
 const vehiculo2 = new Moto("Honda", "Titan", 60000,"125c");
 const vehiculo3 = new Auto("Peugot", "208", 250000, 5);
 const vehiculo4 = new Moto("Yamaha", "YBR", 85500.50, "160c");
 
+//Añadir todos los vehiculos a un solo array de vehiculos
 const vehiculos = [];
-
 vehiculos.push(vehiculo1, vehiculo2, vehiculo3, vehiculo4);
 
-const [ vh1 , vh2, vh3, vh4 ] = vehiculos.map( v => [v.marca, v.modelo, v.precio]);
+//Copiar array para ordenar valores sin alterar lista principal
+const vehiculosCopy = [...vehiculos];
 
-const sortedByPrice = [  vh1 , vh2, vh3, vh4 ].sort((a, b) => {return b[2] - a[2]});
+//Ordenar vehiculos por precio
+const sortedByPrice = vehiculosCopy.sort((a, b) => {return b.precio - a.precio});
 
-const foundLetterY = sortedByPrice.find( (item) => {
-    const vehicle = item[1];    
+//Encontrar vehiculo con letra Y en el modelo
+const foundLetterY = vehiculosCopy.find( (item) => {
+    const vehicle = item.modelo;    
     if (vehicle.includes('Y')) {
         return vehicle;
     }
@@ -48,11 +52,11 @@ const listaVehiculos = vehiculos.map( (vehiculo) => {
     console.log(vehiculo.getSummary());
 });
 console.log(`========================
-Vehiculo más caro: ${sortedByPrice[0][0]} ${sortedByPrice[0][1]}
-Vehiculo más barato: ${sortedByPrice[sortedByPrice.length - 1][0]} ${sortedByPrice[sortedByPrice.length - 1][1]}
-Vehiculo que contiene en el modelo la letra 'Y': ${foundLetterY[0]} ${foundLetterY[1]} ${foundLetterY[2]}
+Vehiculo más caro: ${sortedByPrice[0].marca} ${sortedByPrice[0].modelo}
+Vehiculo más barato: ${sortedByPrice[sortedByPrice.length - 1].marca} ${sortedByPrice[sortedByPrice.length - 1].modelo}
+Vehiculo que contiene en el modelo la letra 'Y': ${foundLetterY.marca} ${foundLetterY.modelo} ${foundLetterY.precio.toFixed(2)}
 ========================
 Vehiculos Ordenados por precio de mayor a menor: ${sortedByPrice.map((vehiculo) => {
-    return `\n${vehiculo[0]} ${vehiculo[1]}`;
+    return `\n${vehiculo.marca} ${vehiculo.modelo}`;
 })}
 `);
